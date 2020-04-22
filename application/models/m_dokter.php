@@ -24,4 +24,16 @@ class m_dokter extends CI_Model
         $this->db->where('username', $data['prevuser']);
         $this->db->update('tb_member');
     }
+
+    public function increaserating($username)
+    {
+        $rating = $this->db->select('rating')->where('username', $username)->get('tb_dokter')->result();
+        $rating = $rating + 1;
+    }
+
+    public function decreaserating($username)
+    {
+        $rating = $this->db->select('rating')->where('username', $username)->get('tb_dokter')->result();
+        $rating = $rating - 1;
+    }
 }

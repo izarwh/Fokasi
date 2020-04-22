@@ -29,4 +29,16 @@ class m_member extends CI_Model
     //     $this->db->where('username',$data['prevuser']);
     //     $this->db->update('tb_post')
     // }
+
+    //kakau mau output data postingan kita pake if di tampilan, jadi kalau datanya ada bisa ditampilin,
+    // kalau datanya gak ada tinggal output belum ada postingan.
+    public function getmypost($username)
+    {
+        $query = $this->db->where('username', $username)->get('tb_posting')->row_array();
+        if ($query) {
+            return $query;
+        } else {
+            return false;
+        }
+    }
 }
