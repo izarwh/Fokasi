@@ -5,7 +5,7 @@ class m_member extends CI_Model
 {
     public function getprofile($username)
     {
-        $query = $this->db->where('username', $username)->get('tb')->row_array();
+        $query = $this->db->where('username', $username)->get('tb_member')->row_array();
         if ($query) {
             return $query;
         } else {
@@ -15,5 +15,18 @@ class m_member extends CI_Model
 
     public function setprofile($data)
     {
+        $this->db->set('username', $data['username']);
+        $this->db->set('name', $data['name']);
+        $this->db->set('phone_number', $data['phone_number']);
+        $this->db->set('email', $data['email']);
+        $this->db->where('username', $data['prevuser']);
+        $this->db->update('tb_member');
     }
+
+    // kalau foreign key gak berubah
+    // public function setpostowner($data){
+    //     $this->db->set('username', $data['username']);
+    //     $this->db->where('username',$data['prevuser']);
+    //     $this->db->update('tb_post')
+    // }
 }
